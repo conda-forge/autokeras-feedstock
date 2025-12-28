@@ -37,7 +37,6 @@ test:
     - autokeras.graph
     - autokeras.keras_layers
     - autokeras.preprocessors
-    - benchmark
 
 about:
   home: http://autokeras.com
