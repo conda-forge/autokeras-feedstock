@@ -1,13 +1,14 @@
 {% set name = "autokeras" %}
-{% set version = "1.0.20" %}
+{% set version = "3.0.0" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/autokeras-{{ version }}.tar.gz
-  sha256: 3d0f09629abb9b98f9059e3c8b9d39b4acd7f6dcde6d0584146a02035159141a
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/autokeras-{{ version }}.tar.gz
+  sha256: be79696f3309617695f134309847dc3cf7a33abd12db8aabbd4eb8d67c3a9539
 
 build:
   number: 0
@@ -16,22 +17,26 @@ build:
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
+    - setuptools
+    - wheel
+    - setuptools_scm
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - packaging
-    - tensorflow >=2.8.0
-    - keras-tuner >=1.1.0
+    - keras >=3.0.0
+    - keras-tuner >=1.4.0
     - pandas
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - autokeras
     - autokeras.graph
     - autokeras.keras_layers
     - autokeras.preprocessors
-    - benchmark
 
 about:
   home: http://autokeras.com
